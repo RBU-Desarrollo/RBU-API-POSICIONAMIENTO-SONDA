@@ -10,25 +10,7 @@ Ejecutar `npm install`
 
 Ejecutar `npm run dev`
 
-# API Posicionamiento Sonda
-
-## Configuración inicial
-
-### Instalar dependencias
-
-Ejecutar:
-
-```sh
-npm install
-```
-
-### Correr proyecto
-
-Ejecutar:
-
-```sh
-npm run dev
-```
+### Info adicional
 
 La aplicación debe estar en la ruta:
 
