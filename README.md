@@ -36,7 +36,7 @@ Luego, ejecuta:
 npm run dev
 ```
 
-Si el servicio ya estaba instalado, este comando lo desinstalará antes de reinstalarlo.
+Si el servicio ya estaba instalado, este comando lo desinstalará.
 
 ## Ver el servicio en Windows
 
