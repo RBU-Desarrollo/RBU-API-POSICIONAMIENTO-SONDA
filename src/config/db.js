@@ -18,17 +18,45 @@ const dbSettings = {
     trustServerCertificate: true,
     packetSize: 16368,
     requestTimeout: 60000,
-    language: 'Spanish',
+    language: "Spanish",
 
     useUTC: false,
-    dateFormat: 'd/m/y', // Set the desired date format here
-    datefirst: 1
+    dateFormat: "d/m/y", // Set the desired date format here
+    datefirst: 1,
+  },
+};
+
+const dbSettingsTesting = {
+  user: "sa",
+  password: "Server.,20255",
+  server: "192.168.70.12",
+  database: "RBU-DESPACHO",
+  port: 1433,
+  options: {
+    encrypt: true,
+    trustServerCertificate: true,
+    packetSize: 16368,
+    requestTimeout: 60000,
+    language: "Spanish",
+
+    useUTC: false,
+    dateFormat: "d/m/y", // Set the desired date format here
+    datefirst: 1,
   },
 };
 
 export const getConnection = async () => {
   try {
-    const pool = sql.connect(dbSettings);
+    const pool = await new sql.ConnectionPool(dbSettings).connect();
+    return pool;
+  } catch (error) {
+    console.log(`Error al conectar a la BBDD. Erro: ${error}`);
+  }
+};
+
+export const getConnectionTesting = async () => {
+  try {
+    const pool = await new sql.ConnectionPool(dbSettingsTesting).connect();
     return pool;
   } catch (error) {
     console.log(`Error al conectar a la BBDD. Erro: ${error}`);
