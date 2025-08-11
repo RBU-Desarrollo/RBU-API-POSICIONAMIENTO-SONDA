@@ -26,6 +26,7 @@ import {
   enviarErrorCorreo,
   escribirTesting,
 } from "./controllers/functions.js";
+import { sendEmail } from "./controllers/mailSender.js";
 
 app.use(cors());
 app.use(express.json());
@@ -218,6 +219,9 @@ const insertarPosicionamientoTesting = async (itemsFull) => {
     ejecutando = false;
   }
 };
+
+
+enviarErrorCorreo("Servicio iniciado!", fechaUltimoEnvioError);
 
 obtenerPosicionamiento();
 

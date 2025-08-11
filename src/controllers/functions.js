@@ -1,6 +1,7 @@
 import axios from "axios";
 import fs from "fs";
 import FormData from "form-data";
+import { sendEmail } from "./mailSender.js";
 
 export function guardarArchivo(archivo, origen) {
   try {
@@ -88,6 +89,44 @@ export function escribirTesting(textoAAlmacenar) {
 
 export function enviarErrorCorreo(error, fechaUltimoEnvioError) {
   try {
+    let fechaActual = new Date();
+
+    let enviarCorreo = false;
+
+    if (fechaUltimoEnvioError == null) {
+      enviarCorreo = true;
+      fechaUltimoEnvioError = new Date();
+    } else {
+      const diferenciaMili = fechaActual - fechaUltimoEnvioError;
+
+      const diferenciaEnHoras = diferenciaMili / (1000 * 60 * 60);
+
+      console.log("tiempo ultimo correo: ", diferenciaEnHoras);
+
+      if (diferenciaEnHoras >= 3.0) {
+        enviarCorreo = true;
+        fechaUltimoEnvioError = new Date();
+      }
+    }
+    if (enviarCorreo) {
+      sendEmail(
+        error,
+        [
+          "pablo.bugueno@transdev.cl, felipe.ibarra@transdev.cl, rodrigo.martinez@transdev.cl, manuel.lagos@transdev.cl",
+        ],
+        "Error API Sonda"
+      );
+    }
+  } catch (err) {
+    escribir(getHoraActual() + "\n");
+    escribir(err.toString() + "\n");
+  }
+
+  return fechaUltimoEnvioError;
+}
+
+export function enviarErrorCorreoAnterior(error, fechaUltimoEnvioError) {
+  try {
     const url = "http://200.75.30.221:4041/email";
     let fechaActual = new Date();
 
@@ -114,8 +153,8 @@ export function enviarErrorCorreo(error, fechaUltimoEnvioError) {
       form.append("from", "API Sonda");
       form.append(
         "to",
-        //"pbn@rbu.cl, fir@rbu.cl, rme@rbu.cl, njm@rbu.cl, igs@rbu.cl"
-        "pablo.bugueno@transdev.cl, felipe.ibarra@transdev.cl, rodrigo.martinez@transdev.cl, nelson.jimenez@transdev.cl,manuel.lagos@transdev.cl"
+        "pablo.bugueno@transdev.cl"
+        //"pablo.bugueno@transdev.cl, felipe.ibarra@transdev.cl, rodrigo.martinez@transdev.cl, nelson.jimenez@transdev.cl,manuel.lagos@transdev.cl"
       );
       form.append("subject", "Error API Sonda");
       form.append("html", error);

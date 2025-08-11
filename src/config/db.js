@@ -7,6 +7,7 @@ import {
   DB_PORT,
 } from "./env.js";
 
+import { getHoraActual } from "../controllers/functions.js";
 const dbSettings = {
   user: "sa",
   password: "Io99G8#RD2Y8",
@@ -51,6 +52,9 @@ export const getConnection = async () => {
     return pool;
   } catch (error) {
     console.log(`Error al conectar a la BBDD. Erro: ${error}`);
+    escribir(getHoraActual() + "\n");
+    escribir(textoAAlmacenar + " a las: " + getHoraActual() + "\n");
+    escribir(error.stack + "\n");
   }
 };
 
