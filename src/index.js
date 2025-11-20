@@ -157,9 +157,9 @@ const obtenerPosicionamiento = async () => {
       console.log(1);
       // Testing asíncrono
 
-      if (!ejecutando) {
+      /**if (!ejecutando) {
         insertarPosicionamientoTesting(itemsFull);
-      }
+      }**/
     } else {
       escribir("No se encontraron registros de Sonda." + "\n");
 
