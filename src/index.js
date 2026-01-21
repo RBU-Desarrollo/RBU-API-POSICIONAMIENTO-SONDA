@@ -112,6 +112,7 @@ const obtenerPosicionamiento = async () => {
             distancia_origen: item["ns1:distancia_origen"][0],
             velocidad_instantanea: item["ns1:velocidad_instantanea"][0],
             fecha_hora: `${fecha} ${item["ns1:hora"][0]}`,
+			ign: item["ns1:ign"][0],
           };
         });
       });
@@ -136,6 +137,7 @@ const obtenerPosicionamiento = async () => {
             distancia_origen: item["ns1:distancia_origen"][0],
             velocidad_instantanea: item["ns1:velocidad_instantanea"][0],
             fecha_hora: `${fecha} ${item["ns1:hora"][0]}`,
+			ign: item["ns1:ign"][0],
           };
         });
       });
