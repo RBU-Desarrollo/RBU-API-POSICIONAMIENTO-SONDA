@@ -1,0 +1,7 @@
+{
+  "name": "buffer-equal-constant-time",
+  "version": "1.0.1",
+  "description": "Shim compatible con Node >= 25 (sin SlowBuffer). Reemplaza buffer-equal-constant-time@1.0.1 via overrides.",
+  "main": "index.js",
+  "license": "BSD-3-Clause"
+}

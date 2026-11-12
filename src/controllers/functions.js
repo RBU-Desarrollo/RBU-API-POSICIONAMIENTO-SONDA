@@ -115,7 +115,10 @@ export function enviarErrorCorreo(error, fechaUltimoEnvioError) {
           "pablo.bugueno@transdev.cl, felipe.ibarra@transdev.cl, rodrigo.martinez@transdev.cl, manuel.lagos@transdev.cl",
         ],
         "Error API Sonda"
-      );
+      ).catch((err) => {
+        escribir(getHoraActual() + "\n");
+        escribir("Error enviando correo: " + err.toString() + "\n");
+      });
     }
   } catch (err) {
     escribir(getHoraActual() + "\n");
